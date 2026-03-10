@@ -8,10 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         :root { 
-            /* 브롬톤 터키쉬 그린 & 14K 골드 팔레트 (Classic & Luxury) */
-            --bg-turkish-light: #7ab4b1; /* 브롬톤 터키쉬 그린 (밝은 톤) */
-            --bg-turkish-main: #599b98; /* 브롬톤 터키쉬 그린 (메인 톤) */
-            --bg-turkish-dark: #3d7572; /* 브롬톤 터키쉬 그린 (어두운 톤) */
+            /* 흰색에 가까운 밝은 파스텔 터키쉬 그린 & 14K 골드 팔레트 (Light & Luxury) */
+            --bg-turkish-light: #f4fafa; /* 흰색에 가까운 아주 밝은 터키쉬 그린 */
+            --bg-turkish-main: #e2f2f1; /* 은은한 터키쉬 그린 */
+            --bg-turkish-dark: #cbe6e4; /* 약간의 깊이감을 주는 파스텔 터키쉬 그린 */
             --card-bg: #ffffff; /* 깨끗한 순백색 카드 (입체감 부여) */
             --gold-14k: #dfb15b; /* 은은하고 고급스러운 14K 리얼 골드 */
             --gold-14k-light: #fce8a1; /* 반짝임을 더해줄 14K 라이트 골드 */
@@ -35,7 +35,7 @@
 
         body { 
             font-family: "Pretendard", sans-serif; 
-            /* 흰색의 허전함을 채워주는 브롬톤 터키쉬 그린 그라데이션 */
+            /* 흰색에 가까운 맑은 파스텔 터키쉬 그린 그라데이션 */
             background: linear-gradient(135deg, var(--bg-turkish-light) 0%, var(--bg-turkish-main) 50%, var(--bg-turkish-dark) 100%);
             background-attachment: fixed;
             margin: 0; padding: 0; 
@@ -63,8 +63,8 @@
         }
         header h1 { 
             margin: 0; font-size: 42px; letter-spacing: 8px; font-weight: 900; 
-            color: #ffffff; 
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+            color: var(--text-dark); 
+            text-shadow: 0 4px 15px rgba(10, 61, 62, 0.1); 
         }
         header .signature {
             font-family: 'Great Vibes', cursive; 
@@ -76,7 +76,7 @@
             animation: textSparkle 3s infinite ease-in-out; /* 은은하게 반짝이는 14K 효과 적용 */
         }
         header p { 
-            margin-top: 5px; font-size: 16px; color: #e0f2f1; 
+            margin-top: 5px; font-size: 16px; color: var(--text-muted); 
             font-weight: 500; letter-spacing: 4px; 
         }
 
@@ -186,9 +186,9 @@
         }
 
         footer { 
-            text-align: center; padding: 50px; color: #d0e8e6; font-size: 13px; 
-            letter-spacing: 2px; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 40px; 
-            background: rgba(0, 0, 0, 0.1);
+            text-align: center; padding: 50px; color: var(--text-muted); font-size: 13px; 
+            letter-spacing: 2px; border-top: 1px solid rgba(10, 61, 62, 0.1); margin-top: 40px; 
+            background: rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
