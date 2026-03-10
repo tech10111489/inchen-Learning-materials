@@ -33,6 +33,13 @@
             100% { box-shadow: 0 5px 15px rgba(223, 177, 91, 0.15), inset 0 0 5px rgba(223, 177, 91, 0.05); }
         }
 
+        /* 18K 골드 네온 반짝임 애니메이션 (사슴 아이콘용) */
+        @keyframes iconSparkle18K {
+            0% { filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5)); }
+            50% { filter: drop-shadow(0 0 15px #d4af37) drop-shadow(0 0 30px #b5952f); }
+            100% { filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5)); }
+        }
+
         body { 
             font-family: "Pretendard", sans-serif; 
             /* 흰색에 가까운 맑은 파스텔 터키쉬 그린 그라데이션 */
@@ -46,7 +53,7 @@
         header {
             background: transparent;
             color: var(--text-dark); 
-            padding: 90px 20px 70px; 
+            padding: 40px 20px 30px; /* 메인 영역 높이 대폭 축소 */
             text-align: center; 
             border-bottom: 2px solid var(--gold-14k);
             position: relative;
@@ -61,10 +68,23 @@
             background: var(--gold-14k-light);
             box-shadow: 0 0 10px var(--gold-14k), 0 0 20px var(--gold-14k);
         }
+
+        /* 고양이 로고 및 타이틀 정렬 스타일 */
+        .neon-cat {
+            color: #d4af37; /* 18K 리얼 골드 */
+            animation: iconSparkle18K 2.5s infinite ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+
         header h1 { 
             margin: 0; font-size: 42px; letter-spacing: 8px; font-weight: 900; 
             color: var(--text-dark); 
             text-shadow: 0 4px 15px rgba(10, 61, 62, 0.1); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; /* 사슴과 글씨 사이의 간격 */
         }
         header .signature {
             font-family: 'Great Vibes', cursive; 
@@ -195,7 +215,15 @@
 <body>
 
 <header>
-    <h1>SIA EUNHYE</h1>
+    <h1>
+        <!-- 원 안의 고양이 (GitHub) 로고 아이콘 -->
+        <div class="neon-cat">
+            <svg width="55" height="55" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+        </div>
+        SIA EUNHYE
+    </h1>
     <div class="signature">Signature Makeup Lab</div>
     <p>INCHEON VOCATIONAL TRAINING SCHOOL</p>
 </header>
@@ -207,7 +235,6 @@
 
     <div class="grid">
         <a href="수강평 설문내용.pdf" download class="card">
-            <!-- 고급 문서/이론 아이콘 -->
             <div class="icon">
                 <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
@@ -222,7 +249,6 @@
         </a>
 
         <a href="수강평 설문내용.pdf" download class="card">
-            <!-- 뷰티 브러시/아트 아이콘 -->
             <div class="icon">
                 <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
@@ -237,7 +263,6 @@
         </a>
 
         <a href="수강평 설문내용.pdf" download class="card">
-            <!-- 스파클/우아함 아이콘 -->
             <div class="icon">
                 <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
@@ -249,7 +274,6 @@
         </a>
 
         <a href="수강평 설문내용.pdf" download class="card">
-            <!-- 다이아몬드/심화 아이콘 -->
             <div class="icon">
                 <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="12 2 2 7 12 22 22 7 12 2"></polygon>
@@ -263,7 +287,6 @@
         </a>
 
         <a href="수강평 설문내용.pdf" download class="card">
-            <!-- 성장/로켓 아이콘 -->
             <div class="icon">
                 <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
@@ -276,7 +299,6 @@
         </a>
 
         <a href="수강평 설문내용.pdf" download class="card">
-            <!-- 법률/저울 아이콘 -->
             <div class="icon">
                 <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 3v18"></path>
