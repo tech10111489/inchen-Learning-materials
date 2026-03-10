@@ -123,12 +123,30 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
+        /* 각 카드 맨 위 핫핑크 네온 그라데이션 라인 추가 */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--accent-pink);
+            box-shadow: 0 0 15px var(--accent-pink);
+            transition: all 0.4s ease;
+        }
+
         /* 핫핑크 네온 호버 효과 극대화 */
         .card:hover {
             transform: translateY(-12px); 
             border-color: var(--accent-pink);
             background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
             box-shadow: 0 15px 35px rgba(255, 30, 137, 0.2);
+        }
+        
+        /* 마우스 호버 시 상단 핑크 라인이 전체로 넓어지며 더 화려해짐 */
+        .card:hover::before {
+            width: 100%;
         }
 
         /* 프리미엄 라인 아이콘 스타일 */
@@ -205,7 +223,7 @@
     <h1>LUMINARAE</h1>
     <!-- 핫핑크 필기체 -->
     <div class="cursive-subtitle">Professional Beauty Artist Training</div>
-    <p>PREMIUM BEAUTY ACADEMY SUPPORT CENTER</p>
+    <p>INCHEON VOCATIONAL TRAINING SCHOOL</p>
 </header>
 
 <div class="container">
