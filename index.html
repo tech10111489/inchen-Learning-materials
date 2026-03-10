@@ -5,116 +5,253 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>루미나래 프리미엄 뷰티 교육센터</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <!-- 고급스러운 필기체 폰트 추가 -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-color: #1a1a1a; --accent-color: #d4af37; --bg-color: #f8f9fa; }
-        body { font-family: "Pretendard", sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: #333; }
-        
-        header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-            color: white; padding: 60px 20px; text-align: center; border-bottom: 5px solid var(--accent-color);
+        :root { 
+            /* 럭셔리 하이엔드 뷰티 브랜드 컬러 팔레트 (톤 보정) */
+            --primary-bg: #121212; /* 기존 블랙보다 살짝 부드러워진 딥 차콜 블랙 */
+            --card-bg: #1e1e1e; /* 입체감을 주고 답답함을 없앤 프리미엄 다크 그레이 */
+            --accent-pink: #ff1e89; /* 시선을 사로잡는 강렬하고 세련된 핫핑크 */
+            --text-main: #ffffff; /* 순백색 텍스트 */
+            --text-muted: #999999; /* 한층 밝아진 실버 그레이 */
+            --border-color: #333333; /* 은은한 라인 */
         }
-        header h1 { margin: 0; font-size: 36px; letter-spacing: 3px; font-weight: 800; }
-        header p { margin-top: 10px; font-size: 18px; color: #ccc; }
-
-        .container { max-width: 1100px; margin: -40px auto 60px; padding: 0 20px; }
+        body { 
+            font-family: "Pretendard", sans-serif; 
+            background-color: var(--primary-bg); 
+            margin: 0; padding: 0; 
+            color: var(--text-main); 
+        }
         
+        /* 헤더 영역 */
+        header {
+            background: linear-gradient(180deg, #1a1a1a 0%, var(--primary-bg) 100%);
+            color: var(--text-main); 
+            padding: 80px 20px 60px; 
+            text-align: center; 
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background: var(--accent-pink);
+            box-shadow: 0 0 15px var(--accent-pink);
+        }
+        header h1 { 
+            margin: 0; font-size: 42px; letter-spacing: 8px; font-weight: 900; 
+            color: var(--text-main);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        
+        /* 새로 추가된 핫핑크 필기체 스타일 */
+        header .cursive-subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: 42px;
+            color: var(--accent-pink);
+            margin: 10px 0 15px 0;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(255, 30, 137, 0.3);
+        }
+        
+        header p { 
+            margin-top: 5px; font-size: 16px; color: var(--text-muted); 
+            letter-spacing: 2px; font-weight: 300;
+        }
+
+        .container { max-width: 1100px; margin: 60px auto 80px; padding: 0 20px; }
+        
+        /* 섹션 타이틀 */
         .section-title {
-            background: white; display: inline-block; padding: 12px 40px; border-radius: 50px;
-            font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 40px; color: var(--primary-color);
+            background: var(--card-bg); 
+            display: inline-block; padding: 14px 45px; border-radius: 50px;
+            font-weight: 700; letter-spacing: 1px;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            margin-bottom: 50px;
         }
 
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            gap: 30px;
         }
 
+        /* 럭셔리 카드 디자인 */
         .card {
-            background: white; border-radius: 20px; padding: 35px 25px; text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;
+            background: var(--card-bg); 
+            border-radius: 16px; padding: 40px 30px; text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+            text-decoration: none; color: inherit; 
+            display: flex; flex-direction: column; align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
+        /* 핫핑크 네온 호버 효과 */
         .card:hover {
-            transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); border-color: var(--accent-color);
+            transform: translateY(-10px); 
+            border-color: var(--accent-pink);
+            background: #222222;
+            box-shadow: 0 10px 30px rgba(255, 30, 137, 0.15);
         }
 
-        .icon { font-size: 45px; margin-bottom: 15px; }
-        .card h3 { margin: 15px 0 10px; font-size: 22px; color: var(--primary-color); }
-        .card p { font-size: 15px; color: #777; margin-bottom: 25px; height: 45px; }
+        /* 프리미엄 라인 아이콘 스타일 */
+        .icon { 
+            margin-bottom: 25px; 
+            color: var(--accent-pink);
+            transition: all 0.4s ease;
+        }
+        .card:hover .icon {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 8px rgba(255, 30, 137, 0.6));
+        }
 
+        .card h3 { 
+            margin: 0 0 12px; font-size: 21px; color: var(--text-main); font-weight: 600; 
+            letter-spacing: -0.5px;
+        }
+        .card p { 
+            font-size: 15px; color: var(--text-muted); margin-bottom: 35px; 
+            height: 45px; line-height: 1.5; font-weight: 300;
+        }
+
+        /* 버튼: 블랙/핑크 아웃라인에서 호버 시 솔리드 핑크로 */
         .btn {
-            background: var(--primary-color); color: white; padding: 12px 30px; border-radius: 8px;
-            font-size: 14px; font-weight: 600; transition: 0.3s; width: 80%;
+            background: transparent; 
+            color: var(--accent-pink); 
+            padding: 14px 30px; border-radius: 50px;
+            font-size: 13px; font-weight: 700; letter-spacing: 1px;
+            transition: 0.4s; width: 80%;
+            border: 1px solid var(--accent-pink);
         }
 
-        .card:hover .btn { background: var(--accent-color); transform: scale(1.05); }
+        .card:hover .btn { 
+            background: var(--accent-pink); 
+            color: var(--text-main); 
+            box-shadow: 0 0 15px rgba(255, 30, 137, 0.4);
+        }
 
-        footer { text-align: center; padding: 50px; color: #aaa; font-size: 14px; border-top: 1px solid #eee; margin-top: 50px; }
+        footer { 
+            text-align: center; padding: 40px; color: #666; font-size: 12px; 
+            letter-spacing: 2px; border-top: 1px solid var(--border-color); margin-top: 60px; 
+            background: #0a0a0a;
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>LUMINARAE</h1>
-    <p>인천직업전문학교 뷰티 아카데미 학습지원 센터</p>
+    <!-- 새롭게 추가된 핫핑크 필기체 (가독성과 우아함을 위해 대소문자 혼용 적용) -->
+    <div class="cursive-subtitle">Professional Beauty Artist Training</div>
+    <p>PREMIUM BEAUTY ACADEMY SUPPORT CENTER</p>
 </header>
 
 <div class="container">
     <div style="text-align: center;">
-        <div class="section-title">뷰티 전문가를 위한 전 과정 커리큘럼</div>
+        <div class="section-title">ALL MASTER CURRICULUM</div>
     </div>
 
     <div class="grid">
-        <li><a href="수강평 설문내용.pdf" download class="card">
-            <div class="icon">📝</div>
+        <a href="수강평 설문내용.pdf" download class="card">
+            <!-- 럭셔리 문서 아이콘 -->
+            <div class="icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+            </div>
             <h3>1. 필기 핵심 자료</h3>
             <p>국가자격증 합격을 위한 고득점 이론 요약집</p>
-            <div class="btn">자료 다운로드</div>
-        </a></li>
+            <div class="btn">DOWNLOAD</div>
+        </a>
 
-        <li><a href="수강평 설문내용.pdf" download class="card">
-            <div class="icon">💆</div>
+        <a href="수강평 설문내용.pdf" download class="card">
+            <!-- 럭셔리 뷰티/스파 아이콘 -->
+            <div class="icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                    <path d="M8.5 10.5h.01"></path>
+                    <path d="M15.5 10.5h.01"></path>
+                    <path d="M12 16a3.5 3.5 0 0 0 3.5-3.5h-7A3.5 3.5 0 0 0 12 16z"></path>
+                </svg>
+            </div>
             <h3>2. 실기 마스터 자료</h3>
             <p>시험장 노하우와 감점 방지 실기 체크리스트</p>
-            <div class="btn">자료 다운로드</div>
-        </a></li>
+            <div class="btn">DOWNLOAD</div>
+        </a>
 
-        <li><a href="수강평 설문내용.pdf" download class="card">
-            <div class="icon">✨</div>
+        <a href="수강평 설문내용.pdf" download class="card">
+            <!-- 럭셔리 스파클 아이콘 -->
+            <div class="icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+            </div>
             <h3>3. 현장 실무 테크닉</h3>
             <p>매출을 올리는 실전 관리 기법 및 노하우</p>
-            <div class="btn">자료 다운로드</div>
-        </a></li>
+            <div class="btn">DOWNLOAD</div>
+        </a>
 
-        <li><a href="수강평 설문내용.pdf" download class="card">
-            <div class="icon">💎</div>
+        <a href="수강평 설문내용.pdf" download class="card">
+            <!-- 럭셔리 다이아몬드 아이콘 -->
+            <div class="icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 22 22 7 12 2"></polygon>
+                    <polyline points="2 7 12 7 22 7"></polyline>
+                    <polyline points="12 22 12 7"></polyline>
+                </svg>
+            </div>
             <h3>4. 전문가 심화 과정</h3>
             <p>고객별 맞춤 피부 분석 및 솔루션 전문 심화</p>
-            <div class="btn">자료 다운로드</div>
-        </a></li>
+            <div class="btn">DOWNLOAD</div>
+        </a>
 
-        <li><a href="수강평 설문내용.pdf" download class="card">
-            <div class="icon">🚀</div>
+        <a href="수강평 설문내용.pdf" download class="card">
+            <!-- 럭셔리 성장/로켓 아이콘 -->
+            <div class="icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                    <polyline points="16 7 22 7 22 13"></polyline>
+                </svg>
+            </div>
             <h3>5. 뷰티 창업 가이드</h3>
             <p>사업자 등록부터 인테리어, 오픈 프로세스 총정리</p>
-            <div class="btn">자료 다운로드</div>
-        </a></li>
+            <div class="btn">DOWNLOAD</div>
+        </a>
 
-        <li><a href="수강평 설문내용.pdf" download class="card">
-            <div class="icon">⚖️</div>
+        <a href="수강평 설문내용.pdf" download class="card">
+            <!-- 럭셔리 저울/법률 아이콘 -->
+            <div class="icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v18"></path>
+                    <rect x="3" y="7" width="18" height="4" rx="1"></rect>
+                    <path d="M5 11l-2 6c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2l-2-6"></path>
+                    <path d="M19 11l-2 6c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2l-2-6"></path>
+                </svg>
+            </div>
             <h3>6. 최신 미용 행정법</h3>
             <p>꼭 알아야 할 공중위생관리법 및 행정 처분 가이드</p>
-            <div class="btn">자료 다운로드</div>
-        </a></li>
+            <div class="btn">DOWNLOAD</div>
+        </a>
     </div>
 </div>
 
 <footer>
-    © 2026 루미나래 뷰티 교육연구소 | 루미나래 제자들과 정보 공유 SITE
+    © 2026 LUMINARAE BEAUTY LAB | DESIGNED FOR EXCELLENCE
 </footer>
 
 </body>
 </html>
-
