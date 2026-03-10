@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIA EUNHYE | 프리미엄 메이크업 아카데미</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            /* 브라운과 블루가 조화된 프리미엄 컬러 팔레트 */
+            --primary-dark: #2d1f1a; /* 딥 에스프레소 브라운 (기존 모카 브라운보다 한층 짙고 고급스러움) */
+            --accent-color: #5b849c; /* 엘리건트 슬레이트 블루 (기존 로즈 골드 대체) */
+            --pure-white: #ffffff;
+            --soft-bg: #faf8f5; /* 웜 아이보리 베이지 */
+            --text-light: #8c7b75; /* 부드러운 브라운그레이 텍스트 */
+        }
+        body { font-family: "Pretendard", sans-serif; background-color: var(--soft-bg); margin: 0; padding: 0; color: var(--primary-dark); }
+        
+        /* 헤더: 딥 에스프레소 브라운 바탕에 슬레이트 블루 포인트 */
+        header {
+            background: var(--primary-dark);
+            color: var(--pure-white); padding: 80px 20px; text-align: center; 
+            border-bottom: 6px solid var(--accent-color);
+        }
+        header h1 { margin: 0; font-size: 40px; letter-spacing: 6px; font-weight: 800; color: var(--pure-white); }
+        header .signature {
+            font-family: 'Great Vibes', cursive; font-size: 52px; color: var(--accent-color);
+            margin-top: -5px; margin-bottom: 10px; display: inline-block;
+        }
+        header p { margin-top: 5px; font-size: 18px; color: #bcaaa4; font-weight: 400; letter-spacing: 1px; }
+
+        .container { max-width: 1100px; margin: -50px auto 80px; padding: 0 20px; }
+        
+        /* 섹션 타이틀: 화이트 바탕에 딥 모카 브라운 테두리 */
+        .section-title {
+            background: var(--pure-white); display: inline-block; padding: 15px 50px; border-radius: 0;
+            font-weight: 700; box-shadow: 0 10px 30px rgba(45, 31, 26, 0.05); margin-bottom: 50px; 
+            color: var(--primary-dark); border: 2px solid var(--primary-dark);
+            letter-spacing: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* 카드 디자인: 화이트 & 부드러운 보더 */
+        .card {
+            background: var(--pure-white); border-radius: 0; padding: 45px 30px; text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid #efebe9; box-shadow: 0 5px 15px rgba(45, 31, 26, 0.03);
+            text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 40px rgba(45, 31, 26, 0.08); 
+            border-color: var(--accent-color);
+        }
+
+        /* 아이콘 색상 효과 부드럽게 수정 */
+        .icon { font-size: 45px; margin-bottom: 20px; filter: grayscale(100%) opacity(70%); transition: 0.4s; }
+        .card:hover .icon { filter: grayscale(0%) opacity(100%); transform: scale(1.1); }
+
+        .card h3 { margin: 15px 0 12px; font-size: 22px; color: var(--primary-dark); font-weight: 700; letter-spacing: -0.5px; }
+        .card p { font-size: 15px; color: var(--text-light); margin-bottom: 30px; height: 45px; line-height: 1.6; }
+
+        /* 버튼: 딥 모카 브라운에서 슬레이트 블루로 변함 */
+        .btn {
+            background: var(--primary-dark); color: var(--pure-white); padding: 14px 0; border-radius: 0;
+            font-size: 13px; font-weight: 600; transition: 0.4s; width: 85%; letter-spacing: 1px;
+            border: 1px solid var(--primary-dark);
+        }
+
+        .card:hover .btn { background: var(--accent-color); border-color: var(--accent-color); }
+
+        footer { text-align: center; padding: 70px; color: #a19a98; font-size: 13px; letter-spacing: 1px; border-top: 1px solid #efebe9; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SIA EUNHYE</h1>
+    <div class="signature">Signature Makeup Lab</div>
+    <p>PROFESSIONAL MAKEUP ARTIST TRAINING</p>
+</header>
+
+<div class="container">
+    <div style="text-align: center;">
+        <div class="section-title">TRAINING ARCHIVE</div>
+    </div>
+
+    <div class="grid">
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">📝</div>
+            <h3>1. 필기 학습 자료</h3>
+            <p>국가자격증 합격을 위한 고득점 핵심 이론 및 기출문제</p>
+            <div class="btn">VIEW MATERIALS</div>
+        </a>
+
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">🎨</div>
+            <h3>2. 실기 마스터 자료</h3>
+            <p>공정별 메이크업 패턴 구현 및 실기 시험 대비 가이드</p>
+            <div class="btn">VIEW MATERIALS</div>
+        </a>
+
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">✨</div>
+            <h3>3. 현장 실무 테크닉</h3>
+            <p>실전 아티스트를 위한 웨딩, 화보, 방송 메이크업 노하우</p>
+            <div class="btn">VIEW MATERIALS</div>
+        </a>
+
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">💄</div>
+            <h3>4. 전문가 심화 과정</h3>
+            <p>퍼스널 컬러 진단 및 이미지 메이킹 전문가 심화 이론</p>
+            <div class="btn">VIEW MATERIALS</div>
+        </a>
+
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">🚀</div>
+            <h3>5. 뷰티 창업 가이드</h3>
+            <p>성공적인 샵 오픈을 위한 비즈니스 모델 및 마케팅 전략</p>
+            <div class="btn">VIEW MATERIALS</div>
+        </a>
+
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">⚖️</div>
+            <h3>6. 최신 미용 행정법</h3>
+            <p>미용업 영업주가 반드시 숙지해야 할 공중위생관리법</p>
+            <div class="btn">VIEW MATERIALS</div>
+        </a>
+    </div>
+</div>
+
+<footer>
+    © 2026 SIA EUNHYE MAKEUP ACADEMY | DESIGNED BY SECRETARY OFFICE
+</footer>
+
+</body>
+</html>
