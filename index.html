@@ -3,37 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>루미나래 피부미용 자료실</title>
+    <title>루미나래 피부미용 전문 자료실</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
     <style>
-        body { background-color: #f0f8ff; font-family: Arial, sans-serif; margin: 0; }
-        header { background-color: black; color: white; padding: 20px; text-align: center; }
-        header h1 { margin: 0; }
-        header h2 { margin: 0; font-weight: normal; }
-        .main { max-width: 800px; margin: 20px auto; }
-        .card { background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .card h3 { color: #4caf50; }
-        .item { padding: 10px 0; border-bottom: 1px solid #eee; }
-        .item:last-child { border-bottom: none; }
-        footer { text-align: center; color: gray; margin-top: 20px; }
+        :root {
+            --primary-color: #1a1a1a; /* 깊이 있는 블랙 */
+            --accent-color: #d4af37;  /* 품격 있는 골드 */
+            --bg-color: #f8f9fa;
+        }
+
+        body {
+            font-family: "Pretendard", sans-serif;
+            background-color: var(--bg-color);
+            margin: 0; padding: 0; color: #333;
+            line-height: 1.6;
+        }
+
+        /* 헤더 디자인: 더 웅장하고 전문적이게 */
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+        }
+
+        header h1 {
+            margin: 0; font-size: 32px; letter-spacing: 2px;
+            font-weight: 700; text-transform: uppercase;
+        }
+
+        header p {
+            margin-top: 10px; font-size: 18px; color: #ccc;
+        }
+
+        .container {
+            max-width: 1000px; margin: -40px auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            background: white; display: inline-block;
+            padding: 10px 30px; border-radius: 50px;
+            font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px; color: var(--primary-color);
+        }
+
+        /* 카드형 그리드 레이아웃: 2열로 배치 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white; border-radius: 15px;
+            padding: 30px; text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-decoration: none; color: inherit;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .icon {
+            font-size: 40px; margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 10px 0; font-size: 20px; color: var(--primary-color);
+        }
+
+        .card p {
+            font-size: 14px; color: #777; margin-bottom: 20px;
+        }
+
+        .btn {
+            background: var(--primary-color); color: white;
+            padding: 10px 25px; border-radius: 5px;
+            font-size: 14px; font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .card:hover .btn {
+            background: var(--accent-color);
+        }
+
+        footer {
+            text-align: center; padding: 40px;
+            color: #999; font-size: 14px;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>루미나래 피부미용 자료실</h1>
-        <h2>학습 자료실</h2>
-    </header>
-    <div class="main">
-        <div class="card">
-            <h3>수업 자료</h3>
-            <div class="item">필기학습자료</div>
-            <div class="item">실기학습자료</div>
-            <div class="item">실무학습자료</div>
-            <div class="item">관리자급학습자료</div>
-        </div>
+
+<header>
+    <h1>LUMINARAE</h1>
+    <p>인천직업전문학교 피부미용 학습지원 센터</p>
+</header>
+
+<div class="container">
+    <div style="text-align: center;">
+        <div class="section-title">교육 단계별 학습 자료</div>
     </div>
-    <footer>© 루미나래 피부미용 교육센터</footer>
+
+    <div class="grid">
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">📝</div>
+            <h3>1. 필기 학습 자료</h3>
+            <p>국가자격증 이론 및 핵심 요점 정리</p>
+            <div class="btn">자료 다운로드</div>
+        </a>
+
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">💆</div>
+            <h3>2. 실기 학습 자료</h3>
+            <p>실전 테크닉 및 공정별 체크리스트</p>
+            <div class="btn">자료 다운로드</div>
+        </a>
+
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">🏢</div>
+            <h3>3. 실무 학습 자료</h3>
+            <p>현장 실무 노하우 및 고객 관리 기법</p>
+            <div class="btn">자료 다운로드</div>
+        </a>
+
+        <a href="수강평 설문내용.pdf" download class="card">
+            <div class="icon">👑</div>
+            <h3>4. 관리자급 학습 자료</h3>
+            <p>경영 전략 및 전문가 심화 과정</p>
+            <div class="btn">자료 다운로드</div>
+        </a>
+    </div>
+</div>
+
+<footer>
+    © 루미나래 피부미용 교육연구소 | 회장 비서실 보좌
+</footer>
+
 </body>
 </html>
-
-
-
