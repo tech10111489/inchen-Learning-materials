@@ -81,7 +81,6 @@
             backdrop-filter: blur(10px);
         }
 
-        /* 6개 카드 그리드 유지 */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -238,11 +237,12 @@
             <div class="icon-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="10 8 16 12 10 16 10 8"></polygon><circle cx="12" cy="12" r="10"></circle></svg></div>
             <h3>02. 실기 마스터 영상</h3>
             <p>전 과정 실전 테크닉 (8강)</p>
-            <div class="btn" style="background: var(--accent-pink); color: white;">WATCH VIDEOS</div>
+            <!-- [수정사항] 인라인 스타일을 제거하여 호버 시에만 색상이 변하도록 수정했습니다. -->
+            <div class="btn">WATCH VIDEOS</div>
         </div>
 
         <!-- 03. 주관식 지문 실전 퀴즈 -->
-        <div class="card" onclick="location.href='quiz.html'">
+        <div class="card">
             <div class="icon-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
             <h3>03. 주관식 지문 실전 퀴즈</h3>
             <p>상위 1% 실전 지문 퀴즈</p>
