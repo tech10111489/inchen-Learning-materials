@@ -18,7 +18,7 @@
             --modal-bg: rgba(5, 5, 5, 0.98);
         }
 
-        /* [추가] 로그인 오버레이 스타일 */
+        /* 로그인 오버레이 스타일 */
         #loginOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, #2d0a1a 0%, var(--primary-bg) 100%);
@@ -235,7 +235,7 @@
 </head>
 <body>
 
-<!-- [추가] 로그인 섹션 -->
+<!-- 로그인 섹션 -->
 <div id="loginOverlay">
     <div class="login-box">
         <div class="trademark-icon" style="animation: none; filter: none;">
@@ -246,13 +246,14 @@
         </div>
         <h2>LUMINARAE</h2>
         <p>교육생 인증이 필요한 서비스입니다.</p>
-        <input type="text" id="userName" class="login-input" placeholder="성함을 입력하세요 (예: 홍길동)">
-        <input type="password" id="userPass" class="login-input" placeholder="출석번호를 입력하세요 (1~20)">
+        <input type="text" id="userName" class="login-input" placeholder="성함을 입력하세요">
+        <input type="password" id="userPass" class="login-input" placeholder="출석번호를 입력하세요">
         <button class="login-btn" onclick="validateLogin()">입장하기</button>
         <div id="loginError">성함 또는 출석번호가 일치하지 않습니다.</div>
     </div>
 </div>
 
+<!-- 이하 본문 디자인 생략 (동일) -->
 <header>
     <div class="trademark-icon">
         <svg width="70" height="70" viewBox="0 0 100 100" fill="none" stroke="var(--accent-pink)" stroke-width="2">
@@ -270,47 +271,36 @@
 <div class="container">
     <div class="section-header"><div class="section-title">ALL MASTER CURRICULUM</div></div>
     <div class="grid">
-        <!-- 01. 필기 예상 문제 -->
         <div class="card" onclick="location.href='피부미용 필기 자격증 2011년도.html'">
             <div class="icon-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
             <h3>01. 필기 예상 문제</h3>
             <p>핵심 족보 리스트</p>
             <div class="btn">필기 시험 시작</div>
         </div>
-
-        <!-- 02. 실기 마스터 영상 -->
         <div class="card" onclick="openModal()">
             <div class="icon-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="10 8 16 12 10 16 10 8"></polygon><circle cx="12" cy="12" r="10"></circle></svg></div>
             <h3>02. 실기 마스터 영상</h3>
             <p>전 과정 실전 테크닉 (8강)</p>
             <div class="btn">WATCH VIDEOS</div>
         </div>
-
-        <!-- 03. 피부 타입 분석 퀴즈 -->
         <div class="card" onclick="location.href='quiz.html'">
             <div class="icon-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
             <h3>03. 피부 타입 분석 퀴즈</h3>
             <p>상위 1% 실전 지문 퀴즈</p>
             <div class="btn">START QUIZ</div>
         </div>
-
-        <!-- 04. 심화 과정 -->
         <div class="card">
             <div class="icon-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8l4 4-4 4M8 12h7"></path></svg></div>
             <h3>04. 전문가 심화 과정</h3>
             <p>맞춤형 피부 분석 솔루션</p>
             <div class="btn">PDF DOWNLOAD</div>
         </div>
-
-        <!-- 05. 취업 가이드 -->
         <div class="card">
             <div class="icon-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div>
             <h3>05. 취업 가이드</h3>
             <p>포트폴리오 및 면접 전략</p>
             <div class="btn">PDF DOWNLOAD</div>
         </div>
-
-        <!-- 06. 진학 가이드 -->
         <div class="card">
             <div class="icon-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></div>
             <h3>06. 진학 가이드</h3>
@@ -320,58 +310,25 @@
     </div>
 </div>
 
-<!-- 8개 비디오 모달 시스템 -->
 <div id="videoModal" onclick="closeModal()">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <button class="close-btn" onclick="closeModal()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-        
+        <button class="close-btn" onclick="closeModal()">&times;</button>
         <div class="modal-header">
             <h2>Practical Training Series</h2>
             <p style="color: #666; font-size: 13px; margin-top: 10px;">루미나래 실전 마스터 클래스</p>
         </div>
-
         <div class="modal-top-nav">
-            <button class="btn-back" onclick="closeModal()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                홈으로 이동
-            </button>
+            <button class="btn-back" onclick="closeModal()">홈으로 이동</button>
         </div>
-        
         <div class="video-grid">
-            <div class="video-item">
-                <video controls><source src="1.mp4" type="video/mp4"></video>
-                <div class="video-info">01. 얼굴 매뉴얼 테크닉 </div>
-            </div>
-            <div class="video-item">
-                <video controls><source src="2.mp4" type="video/mp4"></video>
-                <div class="video-info">02. 팔 관리 테크닉 </div>
-            </div>
-            <div class="video-item">
-                <video controls><source src="3.mp4" type="video/mp4"></video>
-                <div class="video-info">03. 다리 관리 테크닉 </div>
-            </div>
-            <div class="video-item">
-                <video controls><source src="4.mp4" type="video/mp4"></video>
-                <div class="video-info">04. 림프드레나쥐 테크닉 </div>
-            </div>
-            <div class="video-item">
-                <video controls><source src="video5.mp4" type="video/mp4"></video>
-                <div class="video-info">05. 어깨  테크닉 </div>
-            </div>
-            <div class="video-item">
-                <video controls><source src="video6.mp4" type="video/mp4"></video>
-                <div class="video-info">06. 왁싱 테크닉 </div>
-            </div>
-            <div class="video-item">
-                <video controls><source src="video7.mp4" type="video/mp4"></video>
-                <div class="video-info">07. 마스크 테크닉 </div>
-            </div>
-            <div class="video-item">
-                <video controls><source src="video8.mp4" type="video/mp4"></video>
-                <div class="video-info">08. 실전 모의 고사 </div>
-            </div>
+            <div class="video-item"><video controls><source src="1.mp4" type="video/mp4"></video><div class="video-info">01. 얼굴 매뉴얼 테크닉</div></div>
+            <div class="video-item"><video controls><source src="2.mp4" type="video/mp4"></video><div class="video-info">02. 팔 관리 테크닉</div></div>
+            <div class="video-item"><video controls><source src="3.mp4" type="video/mp4"></video><div class="video-info">03. 다리 관리 테크닉</div></div>
+            <div class="video-item"><video controls><source src="4.mp4" type="video/mp4"></video><div class="video-info">04. 림프드레나쥐 테크닉</div></div>
+            <div class="video-item"><video controls><source src="video5.mp4" type="video/mp4"></video><div class="video-info">05. 어깨 테크닉</div></div>
+            <div class="video-item"><video controls><source src="video6.mp4" type="video/mp4"></video><div class="video-info">06. 왁싱 테크닉</div></div>
+            <div class="video-item"><video controls><source src="video7.mp4" type="video/mp4"></video><div class="video-info">07. 마스크 테크닉</div></div>
+            <div class="video-item"><video controls><source src="video8.mp4" type="video/mp4"></video><div class="video-info">08. 실전 모의 고사</div></div>
         </div>
     </div>
 </div>
@@ -379,47 +336,51 @@
 <footer>© 2026 LUMINARAE BEAUTY LAB | DESIGNED FOR EXCELLENCE</footer>
 
 <script>
-    /* [추가] 로그인 검증 로직 */
-    // 세션 유지 확인 (새로고침 시 로그인 유지)
+    // 세션 유지 확인
     window.onload = function() {
         if (sessionStorage.getItem('lum_auth') === 'true') {
             document.getElementById('loginOverlay').style.display = 'none';
         }
     }
 
+    /**
+     * [최종 수정] 이름:출석번호 1:1 매칭 시스템
+     */
     function validateLogin() {
         const nameInput = document.getElementById('userName').value.trim();
         const passInput = document.getElementById('userPass').value.trim();
         const errorMsg = document.getElementById('loginError');
 
-        // 홍길동이면서 1~20번 사이인 경우 체크
-        const isValidName = (nameInput === "홍길동");
-        const passNum = parseInt(passInput);
-        const isValidPass = (!isNaN(passNum) && passNum >= 1 && passNum <= 20);
+        // 1. 학생 출석부 명부 (이름: 암호)
+        // 여기에 학생 이름을 쓰고, 옆에 해당 학생의 암호를 적으시면 됩니다.
+        const attendanceBook = {
+            "홍길동": "1",
+            "홍길롱": "2",
+            "홍길몽": "3",
+            "김선생": "4",
+            "이미용": "5"
+            // "학생이름": "번호", 이런 식으로 20번까지 쭉 적으시면 됩니다.
+        };
 
-        if (isValidName && isValidPass) {
-            // 성공 로직
-            sessionStorage.setItem('lum_auth', 'true'); // 로그인 세션 저장
+        // 2. 검증 로직
+        // 입력받은 이름이 명부에 있고, 그 이름에 해당하는 번호가 입력한 번호와 일치하는지 확인
+        if (attendanceBook[nameInput] && attendanceBook[nameInput] === passInput) {
+            // 일치할 경우 입장
+            sessionStorage.setItem('lum_auth', 'true');
             const overlay = document.getElementById('loginOverlay');
             overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 500);
+            setTimeout(() => { overlay.style.display = 'none'; }, 500);
         } else {
-            // 실패 로직
+            // 불일치할 경우 오류 메시지
             errorMsg.style.display = 'block';
-            document.getElementById('userPass').value = ""; // 비번 초기화
+            document.getElementById('userPass').value = "";
         }
     }
 
-    // 엔터키 지원
     document.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            validateLogin();
-        }
+        if (e.key === 'Enter') validateLogin();
     });
 
-    /* 기존 함수들 */
     function openModal() {
         const m = document.getElementById('videoModal');
         m.style.display = 'flex';
