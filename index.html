@@ -346,6 +346,7 @@
     function playMusic() {
         const bgm = document.getElementById('mainBgm');
         bgm.volume = 0.5;
+        // 브라우저 재생 거부 오류를 방지하기 위한 안전한 호출
         bgm.play().catch(e => console.log("Music play blocked by browser."));
     }
 
@@ -406,13 +407,14 @@
 
     function closeModal() {
         const m = document.getElementById('videoModal');
+        
+        // [수정] 닫기 버튼 클릭 상호작용 즉시 음악 재생 명령 (브라우저 차단 회피)
+        playMusic();
+
         m.classList.remove('active');
         setTimeout(() => {
             m.style.display = 'none';
             m.querySelectorAll('video').forEach(v => v.pause());
-            
-            // 다시 대시보드로 돌아오면 배경음악 재개
-            playMusic();
         }, 400);
         document.body.style.overflow = 'auto';
     }
