@@ -235,6 +235,11 @@
 </head>
 <body>
 
+<!-- 배경음악 요소 -->
+<audio id="mainBgm" loop>
+    <source src="10.mp3" type="audio/mpeg">
+</audio>
+
 <!-- 로그인 섹션 -->
 <div id="loginOverlay">
     <div class="login-box">
@@ -253,7 +258,6 @@
     </div>
 </div>
 
-<!-- 이하 본문 디자인 생략 (동일) -->
 <header>
     <div class="trademark-icon">
         <svg width="70" height="70" viewBox="0 0 100 100" fill="none" stroke="var(--accent-pink)" stroke-width="2">
@@ -336,57 +340,51 @@
 <footer>© 2026 LUMINARAE BEAUTY LAB | DESIGNED FOR EXCELLENCE</footer>
 
 <script>
+    /**
+     * 배경음악 제어 시스템
+     */
+    function playMusic() {
+        const bgm = document.getElementById('mainBgm');
+        bgm.volume = 0.5;
+        bgm.play().catch(e => console.log("Music play blocked by browser."));
+    }
+
+    function stopMusic() {
+        const bgm = document.getElementById('mainBgm');
+        bgm.pause();
+    }
+
     // 세션 유지 확인
     window.onload = function() {
         if (sessionStorage.getItem('lum_auth') === 'true') {
             document.getElementById('loginOverlay').style.display = 'none';
+            // 이미 로그인된 상태일 경우 사용자의 첫 클릭 시 재생되도록 유도 (브라우저 정책)
+            document.body.addEventListener('click', playMusic, { once: true });
         }
     }
 
-    /**
-     * [최종 수정] 이름:출석번호 1:1 매칭 시스템
-     */
     function validateLogin() {
         const nameInput = document.getElementById('userName').value.trim();
         const passInput = document.getElementById('userPass').value.trim();
         const errorMsg = document.getElementById('loginError');
 
-        // 1. 학생 출석부 명부 (이름: 암호)
-        // 여기에 학생 이름을 쓰고, 옆에 해당 학생의 암호를 적으시면 됩니다.
         const attendanceBook = {
-            "김다솜": "1",
-                "김민": "2",
-                "김윤아": "3",
-                "김은서": "4",
-                "김지은": "5",
-                "노시윤": "6",
-                "박서휘": "7",
-                "서정화": "9",
-                "손권희": "10",
-                "신지영": "11",
-                "윤태연": "12",
-                "임초은": "13",
-                "장윤정": "14",
-                "정서영": "15",
-                "정예지": "16",
-                "최지원": "17",
-                "황수빈": "18",
-                "송미림": "19",
-                "홍길동": "21",
-                "루미나래": "28"
-            // "학생이름": "번호", 이런 식으로 20번까지 쭉 적으시면 됩니다.
+            "김다솜": "1", "김민": "2", "김윤아": "3", "김은서": "4", "김지은": "5",
+            "노시윤": "6", "박서휘": "7", "서정화": "9", "손권희": "10", "신지영": "11",
+            "윤태연": "12", "임초은": "13", "장윤정": "14", "정서영": "15", "정예지": "16",
+            "최지원": "17", "황수빈": "18", "송미림": "19", "홍길동": "21", "루미나래": "28"
         };
 
-        // 2. 검증 로직
-        // 입력받은 이름이 명부에 있고, 그 이름에 해당하는 번호가 입력한 번호와 일치하는지 확인
         if (attendanceBook[nameInput] && attendanceBook[nameInput] === passInput) {
-            // 일치할 경우 입장
             sessionStorage.setItem('lum_auth', 'true');
+            
+            // 로그인 성공 시 배경음악 재생 시작
+            playMusic();
+            
             const overlay = document.getElementById('loginOverlay');
             overlay.style.opacity = '0';
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
         } else {
-            // 불일치할 경우 오류 메시지
             errorMsg.style.display = 'block';
             document.getElementById('userPass').value = "";
         }
@@ -401,13 +399,20 @@
         m.style.display = 'flex';
         setTimeout(() => m.classList.add('active'), 10);
         document.body.style.overflow = 'hidden';
+        
+        // 학습 메뉴 진입 시 배경음악 중지
+        stopMusic();
     }
+
     function closeModal() {
         const m = document.getElementById('videoModal');
         m.classList.remove('active');
         setTimeout(() => {
             m.style.display = 'none';
             m.querySelectorAll('video').forEach(v => v.pause());
+            
+            // 다시 대시보드로 돌아오면 배경음악 재개
+            playMusic();
         }, 400);
         document.body.style.overflow = 'auto';
     }
