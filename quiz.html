@@ -34,8 +34,6 @@
             
             useEffect(() => {
                 if (window.lucide && iconRef.current) {
-                    // React의 Virtual DOM과 Lucide의 직접적인 DOM 조작 간의 충돌을 방지하기 위해
-                    // innerHTML을 초기화하고 지정된 ref 노드 내에서만 아이콘을 생성합니다.
                     iconRef.current.innerHTML = `<i data-lucide="${name}"></i>`;
                     window.lucide.createIcons({
                         root: iconRef.current,
@@ -114,26 +112,131 @@
             const [showHint, setShowHint] = useState(false);
 
             const rawData = [
-                { difficulty: 'EASY', answer: '정상피부', text: '적당한 수분과 유분을 가지고 있어 피부표면이 촉촉하고 매끄럽고 윤기가 있다.', hint: '유수분 밸런스가 가장 이상적인 상태입니다.', explanation: '정상피부는 피지선과 한선의 기능이 정상적이어서 유분과 수분이 조화를 이루며, 건강한 광택을 띠는 것이 가장 큰 특징입니다.' },
-                { difficulty: 'EASY', answer: '정상피부', text: '피부의 수분 함유량이 12% 정도이며 촉촉하다.', hint: '수분 함유량 "12%"는 이 유형의 대표적인 수치입니다.', explanation: '피부과학적으로 건강한 정상피부의 각질층 수분 함유량은 보통 12~13%로 정의됩니다. 10% 이하는 건성으로 분류됩니다.' },
-                { difficulty: 'EASY', answer: '정상피부', text: '혈액순환이 잘되어 혈색이 좋으나 T-zone은 약간 번들거림이 있다.', hint: '전반적으로 좋으나 T존만 약간 유분이 있는 이상적 상태입니다.', explanation: '정상피부라도 이마와 코를 잇는 T-zone은 피지선이 발달해 있어 약간의 번들거림이 있을 수 있으나, 이는 정상 범위에 속합니다.' },
-                { difficulty: 'EASY', answer: '건성피부', text: '각질층의 수분이 10%이하이고 눈 주위 잔주름이 보인다.', hint: '수분 "10% 이하"는 이 유형의 결정적 단서입니다.', explanation: '각질층의 수분이 10% 미만으로 떨어지면 피부의 유연성이 급격히 저하되어 눈가 등 얇은 부위에 잔주름이 생기기 시작합니다.' },
-                { difficulty: 'EASY', answer: '건성피부', text: '소릉과 소구 높이 차이가 거의 없으며 선명 하지 않다.', hint: '피부 결의 굴곡이 거의 없이 밋밋하고 얇은 상태입니다.', explanation: '건성피부는 피부가 얇고 유연성이 떨어져 소릉(피부의 솟은 부분)과 소구(피부의 골)의 높이 차이가 거의 없이 밋밋하게 관찰됩니다.' },
-                { difficulty: 'EASY', answer: '건성피부', text: '세안 후 당김은 없으나 시간이 지나면서 당김이 있고 버짐이 생긴다.', hint: '즉각적인 당김보다 "시간이 흐른 뒤의 당김"이 포인트입니다.', explanation: '건성피부는 피지 보호막 형성이 느려 세안 직후보다 시간이 지날수록 수분이 공기 중으로 증발하며 강한 당김과 버짐 현상이 나타납니다.' },
-                { difficulty: 'EASY', answer: '지성피부', text: '피부가 두껍고 표면이 귤껍질처럼 보이며 메이크업이 잘 지워진다.', hint: '"귤껍질" 같은 모공 확장은 이 유형의 핵심 키워드입니다.', explanation: '과도한 피지 분비로 인해 피지 배출구인 모공이 넓어지고, 각질이 두껍게 쌓여 피부 표면이 마치 귤껍질처럼 거칠게 보입니다.' },
-                { difficulty: 'EASY', answer: '지성피부', text: '피지 분비량이 많으나 당김이 심하고 피부가 예민하고 표피 박리가 쉽게 일어난다.', hint: '유분은 많지만 수분이 부족한 "수부지" 상태를 설명합니다.', explanation: '이를 "수분 부족형 지성"이라 합니다. 유분은 많지만 피부 내부의 보습 인자가 부족하여 당김을 느끼고 각질(표피 박리)이 일어나는 예민한 상태입니다.' },
-                { difficulty: 'EASY', answer: '지성피부', text: '소릉과 소구가 뚜렷하고 피부가 번들 거린다. / 소구와 소릉의 높이차가 심하며 각질층이 두껍다.', hint: '피부 결의 굴곡(높이차)이 매우 크고 거칠게 느껴집니다.', explanation: '지성피부는 피지 분비와 각질 비후 현상으로 인해 피부 결의 굴곡(소구와 소릉의 높이 차이)이 매우 크고 거칠어 보이는 것이 특징입니다.' },
-                { difficulty: 'HARD', answer: '건성피부', text: '피지선과 한선의 기능저하로 피부탄력저하 현상이 보이며 모세혈관 확장 현상이 나타나기 쉽다.', hint: '기능 저하로 인해 "모세혈관"이 보일 정도로 얇아진 상태입니다.', explanation: '피지선(기름샘)과 한선(땀샘)의 기능이 모두 저하되면 피부가 매우 건조하고 얇아지며, 진피층의 모세혈관이 비쳐 보일 정도로 예민해집니다.' },
-                { difficulty: 'HARD', answer: '지성피부', text: '계절적 영향을 받기도하나 주로 청소년에게 많이 발생하며 외부 물리적 자극에는 비교적 강하다.', hint: '호르몬 영향으로 피지분비가 왕성한 시기에 흔합니다.', explanation: '지성피부는 피부가 두껍고 유분이 천연 보호막 역할을 하기 때문에 건성피부에 비해 물리적 자극이나 외부 환경에 저항력이 강한 편입니다.' },
-                { difficulty: 'HARD', answer: '정상피부', text: '계절의 변화에 따라 여름에 지성, 겨울에 건성화 될 수 있지만 트러블은 잘 발생하지 않는다.', hint: '환경에 적응은 하되 심각한 문제로 이어지지 않는 건강한 피부입니다.', explanation: '정상피부는 환경 변화에 유연하게 대응합니다. 계절에 따라 피부 상태가 조금씩 변하더라도 스스로 밸런스를 조절하여 트러블을 예방하는 능력이 뛰어납니다.' },
-                { difficulty: 'HARD', answer: '건성피부', text: '모공의 늘어짐이 눈에 띄고 피부당김이 내부로부터 심하게 느껴진다.', hint: '탄력 저하로 모공이 처지고 "속당김"이 심한 경우입니다.', explanation: '피부 내부 수분이 부족하면 탄력 섬유가 약해져 모공이 세로로 늘어지며, 이를 보완할 유분마저 부족할 때 내부 당김이 극심해집니다.' },
-                { difficulty: 'HARD', answer: '지성피부', text: '산화가 진행되고 있어 블랙 헤드가 많다.', hint: '피지가 공기와 만나 산화되면 블랙헤드가 됩니다.', explanation: '과잉 분비된 피지가 모공 밖으로 나오지 못하고 공기와 접촉하여 까맣게 변하는(산화) 현상은 지성피부의 대표적 고민입니다.' }
+                // --- EASY 정상피부 ---
+                { difficulty: 'EASY', answer: '정상피부', text: '적당한 수분과 유분을 가지고 있어 피부표면이 촉촉하고 매끄럽고 윤기가 있다.', hint: '가장 이상적인 유수분 밸런스를 가진 상태입니다.', explanation: '피지선과 한선의 기능이 원활하여 피부 결이 매끄럽고 촉촉한 상태를 유지합니다.' },
+                { difficulty: 'EASY', answer: '정상피부', text: '세안 후 당기거나 번들거림이 없다.', hint: '세안 직후 자극이 거의 없는 건강한 상태입니다.', explanation: '피부 보호막이 견고하여 외부 자극이나 수분 손실에 저항력이 강합니다.' },
+                { difficulty: 'EASY', answer: '정상피부', text: '화장이 잘 지워지지 않으며, 오래 지속된다.', hint: '화장의 밀착력이 가장 높은 유형입니다.', explanation: '적절한 유분감이 화장품의 밀착력을 높여 지속력을 강화합니다.' },
+                { difficulty: 'EASY', answer: '정상피부', text: '모공이 작아 눈에 잘 보이지 않고, 피부탄력이 좋다.', hint: '피부 결이 섬세하고 조밀한 것이 특징입니다.', explanation: '탄력 섬유가 건강하고 모공의 늘어짐이 없어 결이 매우 곱게 보입니다.' },
+                { difficulty: 'EASY', answer: '정상피부', text: '피부의 수분 함유량이 12% 정도이며 촉촉하다.', hint: '각질층의 표준 수분 함량을 기억하세요.', explanation: '정상적인 피부 각질층은 약 12~13%의 수분을 유지하여 유연성을 확보합니다.' },
+                { difficulty: 'EASY', answer: '정상피부', text: '20대 초반에 많이 나타나는 피부로 피지선이 활발하고 원활하며 윤기가 흐른다.', hint: '가장 생기 있는 연령대의 표준 피부입니다.', explanation: '신진대사가 가장 활발한 시기에 나타나는 가장 건강한 피부 형태입니다.' },
+                { difficulty: 'EASY', answer: '정상피부', text: '볼 주위에는 핑크빛 혈색을 보이며 코에 약간 블랙 헤드가 있다.', hint: '전반적인 혈색이 좋지만 T존에 약간의 피지가 있는 상태입니다.', explanation: '정상 피부라도 코 부위는 피지선이 발달하여 약간의 블랙헤드가 존재할 수 있습니다.' },
+                { difficulty: 'EASY', answer: '정상피부', text: '혈액순환이 잘되어 혈색이 좋으나 T-zone은 약간 번들거림이 있다.', hint: '전반적인 안색이 밝고 생기가 넘칩니다.', explanation: '모세혈관 순환이 잘 되어 맑은 톤을 유지하며 T존의 피지 분비도 정상 범위 내입니다.' },
+                { difficulty: 'EASY', answer: '정상피부', text: '피부결이 섬세하고 윤기가 있다.', hint: '건성피부와 비교했을 때 윤기가 있다는 점이 핵심입니다.', explanation: '섬세한 결에 건강한 광택이 흐르는 것이 정상피부의 표면 특징입니다.' },
+
+                // --- EASY 건성피부 ---
+                { difficulty: 'EASY', answer: '건성피부', text: '모공이 작고 윤기가 없으며 각질이 일어난다.', hint: '결은 곱지만 표면이 푸석푸석한 느낌이 듭니다.', explanation: '피지 분비 부족으로 보호막이 형성되지 않아 윤기가 없고 각질이 쉽게 들뜹니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '외관상 괜찮아 보이지만, 화장이 들뜨고 갈라 진다.', hint: '겉보기엔 깨끗해 보일 수 있으나 화장 밀착력이 낮습니다.', explanation: '피부 수분 부족으로 인해 메이크업 입자가 피부에 고르게 붙지 못하고 갈라집니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '소릉과 소구 높이 차이가 거의 없으며 선명 하지 않다.', hint: '피부 요철이 거의 없이 밋밋하고 얇은 결입니다.', explanation: '피부가 얇고 탄력이 떨어지면서 소구와 소릉의 굴곡이 희미해지는 특징이 있습니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '각질층의 수분이 10%이하이고 눈 주위 잔주름이 보인다.', hint: '수분 함량이 정상 기준보다 현저히 낮습니다.', explanation: '수분 10% 이하는 건성의 기준이며, 특히 얇은 눈가에 주름이 먼저 형성됩니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '접촉 피부염이 발생 하기 쉬운 편이며 피부에 저항력이 약한상태이다.', hint: '보호막이 얇아 외부 자극에 매우 민감하게 반응합니다.', explanation: '천연 보호막(피지막)의 결여로 인해 유해균이나 화학 성분에 무방비하게 노출됩니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '순환이 잘 안 되며 피부 표면에 윤기가 없고 푸석푸석하다.', hint: '혈색이 맑지 않고 표면이 거친 느낌이 강합니다.', explanation: '대사 기능 저하로 인해 영양 공급이 불량하여 피부가 건조하고 둔탁해 보입니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '피부가 손상되기 쉬워 색소침착에 의한 기미, 주근깨가 생기기 쉽고 노화현상이 빨리온다.', hint: '자외선이나 자극에 의한 데미지가 그대로 누적됩니다.', explanation: '방어 기전이 약해 멜라닌 색소 형성이 활발해지고 노화가 가속화됩니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '민감피부가 되거나 노화가 빨리 진행된다.', hint: '건성 방치 시 나타나는 2차적인 문제입니다.', explanation: '수분 부족은 곧 피부 장벽의 파괴로 이어져 민감성으로 전이되기 쉽습니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '눈에 잔 주름이 두드러져 보일뿐아니라 부분적으로 하얀 각질이 일어나고 심하면 버짐이 생긴다.', hint: '건조함이 극에 달해 하얀 가루가 날리는 상태입니다.', explanation: '심한 수분 부족은 표피의 균열을 일으켜 버짐 같은 박리 현상을 유발합니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '세안 후 당김은 없으나 시간이 지나면서 당김이 있고 버짐이 생긴다.', hint: '즉각적인 반응보다 지연성 건조 현상이 포인트입니다.', explanation: '수분 유실을 막아줄 유분이 부족하여 시간이 지날수록 내부 수분이 공기 중으로 날아갑니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '모공이 작으며 피부결이 섬세해 보이나 윤기가 없고 항상 긴장 되고 있다.', hint: '겉은 매끄러워 보이나 실제로는 당김이 심해 스트레스를 받는 피부입니다.', explanation: '모공 크기는 정상이거나 작지만, 유연성 부족으로 피부가 팽팽하게 당겨지는 긴장 상태입니다.' },
+                { difficulty: 'EASY', answer: '건성피부', text: '모공이 작고 피부가 얇으며, 피부결이 섬세해 보인다.', hint: '결은 곱지만 내구성이 약한 피부의 전형입니다.', explanation: '피부 조직 자체가 얇아 혈관이 비치기도 하며 결은 매우 조밀하고 섬세합니다.' },
+
+                // --- EASY 지성피부 ---
+                { difficulty: 'EASY', answer: '지성피부', text: '피부결이 거칠고 피부가 두꺼운 편이며, 잔주름이 잘 나타나지 않는다.', hint: '각질층이 비후되어 튼튼해 보이지만 거친 피부입니다.', explanation: '피지 막이 두꺼워 수분 증발을 막아주므로 주름은 늦게 생기지만 결은 거칩니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '피부표면이 늘 번들거리며, 피지과다분비로 모공이 크고 불규칙하다.', hint: '유분이 넘치고 모공 입구가 확장된 상태입니다.', explanation: '피지의 원활한 배출을 위해 모공이 넓어지며 표면은 유분으로 항상 번들거립니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '메이크업이 쉽게 지워지고 지속되지 못한다.', hint: '유분이 화장품을 녹여내어 밀리는 현상이 잦습니다.', explanation: '과도한 피지가 파운데이션의 오일 성분과 결합하여 메이크업이 금방 지워집니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '소릉과 소구가 뚜렷하고 피부가 번들 거린다. / 소구와 소릉의 높이차가 심하며 각질층이 두껍다.', hint: '피부의 요철이 매우 심하고 결이 투박한 상태입니다.', explanation: '각질 비후와 피지 과다로 인해 피부 굴곡인 소구와 소릉의 높낮이가 매우 크게 차이 납니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '면포와 뾰루지가 관찰 되며, 각질층이 두껍고 모공이 늘어져 있다.', hint: '트러블이 가장 빈번하게 발생하는 유형입니다.', explanation: '모공 속에 갇힌 피지가 염증을 일으켜 여드름이나 뾰루지로 발전하기 쉽습니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '피부 과각화 현상이 있으며 코에 블랙 헤드가 많고 깊은 주름이 있다.', hint: '각질이 딱딱하게 쌓이고 모공 속 피지가 산화되었습니다.', explanation: '각질 탈락이 원활하지 않아 층이 두꺼워지고, 코 부위 피지가 까맣게 산화된 것이 특징입니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '윤기와 탄력이 있어 잔주름이 없는 편이고, 저항력이 강하고 노화가 느리게 진행된다.', hint: '지성 피부가 가지는 가장 큰 장점입니다.', explanation: '풍부한 피지가 천연 보호막 역할을 하여 자극으로부터 피부를 보호하고 노화를 지연시킵니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '피지 분비량이 많으나 당김이 심하고 피부가 예민하고 표피 박리가 쉽게 일어난다.', hint: '일명 "수부지(수분 부족형 지성)"를 설명합니다.', explanation: '유분은 많지만 피부 내부의 천연 보습 인자가 부족하여 당김과 각질이 동시에 나타납니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '피지분비량은 많으나 보습 기능이 저하 되어 당김 현상이 있다.', hint: '기름은 돌지만 속은 건조한 상태입니다.', explanation: '수분을 붙잡아두는 능력이 떨어져 유분막 아래에서 피부가 당기는 현상이 발생합니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '산화가 진행되고 있으며 피부가 칙칙하다.', hint: '피지가 공기와 만나면서 색이 변하고 안색이 어두워집니다.', explanation: '피지의 산화는 피부 톤을 어둡고 노랗거나 칙칙하게 만드는 주된 원인입니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '피지분비가 많아 피부표면이 번들거리고 끈적이며 먼지가 잘 붙는다.', hint: '표면 점성이 높아 외부 오염물질에 취약합니다.', explanation: '끈적이는 피지 성분이 대기 중의 미세먼지와 결합하여 모공 오염을 가중시킵니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '세안 후 당김은 없으나 시간이 지나면서 피부가 번들거린다.', hint: '세안 직후엔 개운하지만 금세 유분이 올라오는 특징입니다.', explanation: '피지 샘의 활동이 매우 활발하여 세안 후 금방 다시 피지 보호막이 형성됩니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '피부가 두껍고 표면이 귤껍질처럼 보이며 메이크업이 잘 지워진다.', hint: '모공 확장으로 인해 표면 질감이 거친 상태입니다.', explanation: '모공이 넓어져 구멍이 송송 뚫린 것처럼 보이는 피부 질감을 "귤껍질"에 비유합니다.' },
+                { difficulty: 'EASY', answer: '지성피부', text: '피부색이 전체적으로 칙칙하거나 모세혈관이 확장되어 붉은색을 띠기 쉽다.', hint: '순환 장애와 염증 반응이 안색에 반영된 경우입니다.', explanation: '두꺼운 각질로 인해 칙칙하거나 잦은 트러블로 인해 붉은기가 동반되는 경우가 많습니다.' },
+
+                // --- HARD 질문 및 추가 리스트 ---
+                { difficulty: 'HARD', answer: '지성피부', text: '피부 과각화 현상이 있으며 코에 블랙 헤드가 많고 깊은 주름이 있다.', hint: '각질이 비정상적으로 두껍게 쌓이는 현상이 나타납니다.', explanation: '표피의 각질 교체 주기가 늦어져 각질이 비후해지고 주름이 깊게 형성됩니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '산화가 진행되고 있어 블랙 헤드가 많다.', hint: '피지 산화의 결과물이 가장 뚜렷하게 보입니다.', explanation: '모공 밖으로 노출된 피지가 산소와 결합하여 검게 변하는 과정이 활발합니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '피부가 두껍고 표면이 귤껍질처럼 보이며 메이크업이 잘 지워진다.', hint: '조직이 견고하고 두껍지만 모공이 확장되어 있습니다.', explanation: '과다한 피지 배출 시도로 인해 진피 조직의 변형과 모공 확장이 동반된 상태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '각질층의 수분이 10%이하이고 눈 주위 잔주름이 보인다.', hint: '수치로 정의되는 건성 피부의 임계점입니다.', explanation: '수분 10% 미만은 피부의 유연성을 완전히 상실하게 만드는 위험 수치입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '모공이 작으며 피부결이 섬세해 보이나 윤기가 없고 항상 긴장 되고 있다.', hint: '결의 섬세함 뒤에 숨겨진 건조한 스트레스를 파악하세요.', explanation: '수분 부족으로 인한 피부 긴장(Tightness)이 매우 심한 상태를 설명합니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '피부결이 섬세하고 윤기가 있다.', hint: '가장 이상적인 결의 상태를 의미합니다.', explanation: '매끄러운 결과 적절한 피지 광택이 조화를 이루는 상태입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '혈액순환이 잘되어 혈색이 좋으나 T-zone은 약간 번들거림이 있다.', hint: '균형 잡힌 안색과 생리적인 피지 분비의 조화입니다.', explanation: '순환 기능이 정상이며 부위별 피지선 밀도 차이에 따른 자연스러운 현상입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '피부표면이 늘 번들거리며, 피지과다분비로 모공이 크고 불규칙하다.', hint: '표면 질감이 매끄럽지 않고 구멍이 뚜렷합니다.', explanation: '모공 주위 각질 비후와 피지 덩어리로 인해 모공 입구가 불규칙하게 변형됩니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '메이크업이 쉽게 지워지고 지속되지 못한다.', hint: '유지력이 가장 떨어지는 피부 타입입니다.', explanation: '피지 분비 속도가 빨라 화장품의 고착력을 실시간으로 저해합니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '소구와 소릉의 높이차가 심하며 각질층이 두껍다.', hint: '피부의 굴곡이 매우 거칠고 결이 투박합니다.', explanation: '각질층이 겹겹이 쌓여 표면의 높낮이가 극명하게 갈리는 상태입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '세안 후 당김은 없으나 시간이 지나면서 피부가 번들거린다.', hint: '즉각적인 불편함은 없지만 관리가 까다로운 유형입니다.', explanation: '피지막 형성 능력이 과도하여 수시로 유분을 닦아주어야 하는 상태입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '20대 초반에 많이 나타나는 피부로 피지선이 원활하며 윤기가 흐른다.', hint: '피부의 황금기를 대표하는 지문입니다.', explanation: '피부의 모든 기능이 정점을 찍었을 때의 표준 상태를 설명합니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '산화가 느리게 진행되며 피지분비량이 많다.', hint: '피지 분비량 자체에 집중하세요.', explanation: '산화 속도와 별개로 절대적인 피지 생성량이 많은 것이 지성피부의 기본 정의입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '외관상 괜찮아 보이지만, 화장이 들뜨고 갈라 진다.', hint: '겉모습에 속지 말아야 할 전형적인 건조 피부입니다.', explanation: '피부 밀착을 도와줄 수분과 유분이 모두 결여되어 입자가 겉도는 상태입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '윤기와 탄력이 있어 잔주름이 없는 편이고, 저항력이 강하고 노화가 느리게 진행된다.', hint: '방어 기전이 가장 우수한 피부 상태를 설명합니다.', explanation: '풍부한 유분이 수분 손실을 완벽히 차단하고 외부 자극을 완충하는 역할을 합니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '피부색이 전체적으로 칙칙하거나 모세혈관이 확장되어 붉은색을 띠기 쉽다.', hint: '염증성 반응이 안색에 미치는 영향을 생각하세요.', explanation: '피지 정체로 인한 미세 염증이 지속되면서 피부색이 변하고 예민해진 상태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '소릉과 소구 높이 차이가 거의 없으며 선명 하지 않다.', hint: '조직이 얇아져 굴곡이 사라진 평평한 피부입니다.', explanation: '피부 위축으로 인해 미세 결 자체가 희미해진 고도의 건조 상태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '세안 후 당김은 없으나 시간이 지나면서 당김이 있고 버짐이 생긴다.', hint: '후발성 당김 현상이 핵심 지표입니다.', explanation: '수분 보유 능력이 없어 시간이 갈수록 내부 수분이 급격히 고갈되는 과정입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '모공이 작아 눈에 잘 보이지 않고, 피부탄력이 좋다.', hint: '건강함과 매끄러움의 정수입니다.', explanation: '탄력 섬유인 콜라겐과 엘라스틴이 잘 지지되어 결이 탄탄한 상태입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '피부결이 거칠고 피부가 두꺼운 편이며, 잔주름이 잘 나타나지 않는다.', hint: '내구성은 좋으나 심미적인 부드러움이 부족합니다.', explanation: '표피 조직이 두껍게 발달하여 잔주름 형성을 억제하지만 결은 투박합니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '피지분비량은 많으나 보습 기능이 저하 되어 당김 현상이 있다.', hint: '유분막이 수분을 지켜주지 못하는 특이한 상태입니다.', explanation: '표면은 번들거리지만 내부의 천연보습인자(NMF)가 부족한 불균형 상태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '눈에 잔 주름이 두드러져 보일뿐아니라 부분적으로 하얀 각질이 일어나고 심하면 버짐이 생긴다.', hint: '가장 시각적으로 뚜렷한 건성 증상들을 나열합니다.', explanation: '수분 유실로 인한 표피 박락과 주름 형성이 동시다발적으로 일어납니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '면포와 뾰루지가 관찰 되며, 각질층이 두껍고 모공이 늘어져 있다.', hint: '염증과 탄력 저하가 동시에 진행된 지성 타입입니다.', explanation: '과다 피지가 모공을 막아 염증을 유발하고 주변 조직을 약화시킵니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '볼 주위에는 핑크빛 혈색을 보이며 코에 약간 블랙 헤드가 있다.', hint: '건강한 안색의 표준 모델입니다.', explanation: '순환이 원활한 볼의 혈색과 자연스러운 코의 피지 분포를 설명합니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '모공이 작고 피부가 얇으며, 피부결이 섬세해 보인다.', hint: '가장 연약하고 보호가 필요한 피부 유형입니다.', explanation: '진피와 표피층이 모두 얇아 외부 충격에 약하지만 결 자체는 매우 조밀합니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '피지분비가 많아 피부표면이 번들거리고 끈적이며 먼지가 잘 붙는다.', hint: '흡착력이 높은 피부 표면 상태를 의미합니다.', explanation: '점성이 있는 지질 성분이 피부 표면을 덮어 외부 오염 물질을 끌어당깁니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '피지 분비량이 많으나 당김이 심하고 피부가 예민하고 표피 박리가 쉽게 일어난다.', hint: '가장 다루기 까다로운 복합적인 지성 피부입니다.', explanation: '유분 과다와 장벽 손상이 겹쳐 트러블과 건조함이 공존하는 예민 지성입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '화장이 잘 지워지지 않으며, 오래 지속된다.', hint: '모든 관리의 목표가 되는 이상적 상태입니다.', explanation: '수분과 유분이 적절한 접착제 역할을 하여 메이크업을 견고하게 지탱합니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '모공이 작고 윤기가 없으며 각질이 일어난다.', hint: '생기가 결여된 매트한 피부의 특징입니다.', explanation: '반사광을 만들어낼 피지막이 없어 피부가 둔탁해 보이는 상태입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '소릉과 소구가 뚜렷하고 피부가 번들거린다.', hint: '굴곡과 광택이 동시에 강조되는 피부 결입니다.', explanation: '피부 결의 골이 깊고 솟은 부분이 유분으로 인해 반짝이는 지성의 전형입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '순환이 잘 안 되며 피부 표면에 윤기가 없고 푸석푸석하다.', hint: '대사 정체와 건조함이 결합된 결과입니다.', explanation: '영양 불균형으로 인해 세포 재생이 늦고 표면이 거친 상태를 의미합니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '민감피부가 되거나 노화가 빨리 진행된다.', hint: '건성의 장기적인 위험 요소입니다.', explanation: '보호벽 부재로 인한 가속 노화와 감작 현상을 설명합니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '세안 후 당기거나 번들거림이 없다.', hint: '자정 능력이 뛰어난 건강한 피부입니다.', explanation: '항상성을 유지하는 능력이 뛰어나 세안 후에도 즉시 밸런스를 되찾습니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '피부의 수분 함유량이 12% 정도이며 촉촉하다.', hint: '학술적으로 정의되는 가장 깨끗한 상태의 수치입니다.', explanation: '각질층 보습이 완벽하여 유연성이 최고조에 달한 상태를 의미합니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '접촉 피부염이 발생 하기 쉬운 편이며 피부에 저항력이 약한상태이다.', hint: '화장품 선택에 가장 주의가 필요한 유형 중 하나입니다.', explanation: '화학 성분이 진피층까지 쉽게 침투할 수 있을 정도로 방어력이 무너진 상태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '피부가 손상되기 쉬워 색소침착에 의한 기미, 주근깨가 생기기 쉽고 노화현상이 빨리온다.', hint: '햇빛과 외부 환경에 가장 취약한 유형입니다.', explanation: '멜라닌 세포의 자극이 잦고 회복 속도가 느려 색소 질환이 흔히 발생합니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '적당한 수분과 유분을 가지고 있어 피부표면이 촉촉하고 매끄럽고 윤기가 있다.', hint: '피부미용 실무에서 만날 수 있는 최상의 케이스입니다.', explanation: '모든 생리 기능이 균형을 이루어 아름다움을 발산하는 상태입니다.' },
+
+                // --- HARD 추가 지문 ---
+                { difficulty: 'HARD', answer: '지성피부', text: '과도한 피지분비로 번들거리나 세안 후 당김이 있고 표피박리가 발생한다.', hint: '지성임에도 불구하고 장벽이 손상된 고난도 케이스입니다.', explanation: '유분은 넘치지만 피부 결속력이 약해 각질이 들뜨는 예민한 지성 상태를 설명합니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '피지선과 한선의 기능저하로 피부탄력저하 현상이 보이며 모세혈관 확장 현상이 나타나기 쉽다.', hint: '피부가 매우 얇아져 내부 혈관이 비쳐 보입니다.', explanation: '지질 성분의 부재로 진피층을 지지하지 못해 혈관이 늘어나고 붉어지는 건성 노화 과정입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '계절적 영향을 받기도하나 주로 청소년에게 많이 발생하며 외부 물리적 자극에는 비교적 강하다.', hint: '호르몬과 내구성에 초점을 맞추세요.', explanation: '안드로겐 호르몬에 의한 피지 활성화와 두꺼운 표피 덕분에 외부 자극에 잘 견디는 특징입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '코에 약간의 면포가 있으며 세안 후 당기거나 끈적이지 않는다.', hint: '부분적인 결점이 있지만 전반적으로 완벽한 상태입니다.', explanation: '지극히 정상적인 생리 작용을 보이며 사용자의 불편함이 거의 없는 이상적 피부입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '모공이 늘어지진 않으나 커서 육안으로 쉽게 구별할 수 있다.', hint: '모공의 크기가 확대된 것이 특징입니다.', explanation: '피지 배출량이 많아 통로인 모공 자체가 원형으로 넓어진 초기 지성 형태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '모공의 늘어짐이 눈에 띄고 피부당김이 내부로부터 심하게 느껴진다.', hint: '수분 부족으로 인한 탄력 상실이 모공에 반영되었습니다.', explanation: '피부 조직이 느슨해지면서 모공이 타원형으로 처지고 속당김이 극심한 상태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '피부염이 발생하기 쉬우며 피부트러블이 잘 생기고 예민하다.', hint: '건조함이 민감함으로 이어진 경우입니다.', explanation: '보습 인자 결핍으로 인해 미세한 자극에도 염증 반응이 즉각 일어나는 예민 건성입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '각질층이 두껍고 모낭염이 형성되며 피부가 거칠어진다.', hint: '피지와 각질이 엉켜 염증을 유발하는 지성 피부의 부작용입니다.', explanation: '모공 주위 각화 현상과 세균 번식이 겹쳐 화농성 염증이 잦은 상태입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '계절의 변화에 따라 여름에 지성, 겨울에 건성화 될 수 있지만 트러블은 잘 발생하지 않는다.', hint: '환경 적응력이 뛰어난 건강한 피부를 설명합니다.', explanation: '날씨에 따른 생리적 변화를 겪으면서도 스스로 항상성을 잘 조절하는 상태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '소구와 소릉의 높이차가 거의 없으며 선명하지 않다.', hint: '피부 결이 소실된 것 같은 얇고 건조한 상태입니다.', explanation: '피부 구조가 위축되어 표면의 세밀한 결이 무너진 극건성 상태를 의미합니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '피부염 발생이후 붉고 예민한 피부이다.', hint: '후천적으로 손상된 건성 상태에 주목하세요.', explanation: '반복되는 건조증과 염증으로 인해 모세혈관이 확장되고 안면 홍조가 정착된 상태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '각질층의 수분이 10% 미만이며 화장이 잘받지 않고 들뜨기 쉽다.', hint: '건성의 정의와 실무적인 문제점을 동시에 언급합니다.', explanation: '심각한 수분 결핍으로 인해 메이크업 입자가 피부 표면에 밀착되지 못하는 상태입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '세안 후 당김이 있거나 끈적임이 없으며 세균에 대한 저항감이 있다.', hint: '면역력과 밸런스가 최고인 상태를 설명합니다.', explanation: '피부 산성막(pH 4.5~6.5)이 적절히 유지되어 유해균 증식을 효과적으로 억제합니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '정상적인 피지 분비로 T존은 약간 번들거리며 세안 후 피부 당김이 거의 느껴지지 않는다.', hint: '가장 편안한 상태의 피부 컨디션입니다.', explanation: '부위별 특성은 유지하되 전체적으로 촉촉함과 유연성을 잃지 않는 건강한 상태입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '충분한 수분과 피지를 가지고 있으며 표정주름 이외에는 주름이 없다.', hint: '노화의 징후가 거의 없는 건강한 상태를 뜻합니다.', explanation: '수분과 유분이 장벽을 지탱하고 있어 건조에 의한 가짜 주름이 없는 상태입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '소릉과 소구의 높이차가 완만하며 수분이 적당하고 탄력이 좋은편이다.', hint: '이상적인 피부 결의 높낮이를 설명합니다.', explanation: '결이 너무 거칠지도, 너무 얇지도 않은 완만하고 탄력 있는 구조를 유지합니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '각질층이 비후하여 피부가 두껍게 보인다.', hint: '피부 조직의 두께감에 초점을 맞추세요.', explanation: '피지 축적과 각질 탈락 지연으로 인해 표피층이 비정상적으로 두꺼워진 지성 특징입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '각질이 잘 일어나고 피부가 둔탁해 보이며 굵은 주름이 있다.', hint: '건조한 각질과 굵은 주름의 역설적인 조합입니다.', explanation: '수분이 결여된 지성 피부는 표면은 거칠고 각질이 일지만 조직은 두꺼워 굵은 주름이 생깁니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '모낭염이 형성되며 피부가 거칠어진다.', hint: '모공 오염이 심각한 지성 피부 상태입니다.', explanation: '모공 내 피지 산화와 박테리아 증식이 결합하여 피부 결이 파괴되는 과정입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '화장이 잘 지워지지 않고 번들거림이 없다.', hint: '쾌적한 메이크업 상태를 유지하는 비결입니다.', explanation: '적당한 수분감이 파우더 입자를 잡아주어 오랜 시간 정돈된 모습을 유지합니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '피부가 윤기가 없으며 푸석푸석하고 순환이 안된다.', hint: '영양 결핍과 건조가 겉으로 드러난 상태입니다.', explanation: '대사 정체로 인해 피부 톤이 어둡고 표면 질감이 메마른 전형적인 건성 특징입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '모공이 작고 피부가 얇으며 외관상으로 볼때 섬세해 보이나 윤기가 없다.', hint: '고급스러운 결 뒤에 숨겨진 건조한 진실입니다.', explanation: '섬세한 결은 건성 피부의 장점이나, 수분과 유분의 부재는 광택을 앗아갑니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '한선 및 피부보습 능력의 저하에 기인하여 피부가 거칠고 늘어져 있다.', hint: '기능 저하로 인한 탄력 상실을 설명합니다.', explanation: '땀샘(한선) 조절 실패와 보습막 파괴가 동시에 일어나 지지력을 잃은 상태입니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '피부결이 곱고 피부 두께가 얇으며 피부의 유연성이 부족하다.', hint: '섬세하지만 잘 찢기거나 갈라지기 쉬운 상태입니다.', explanation: '피부 장벽 조직이 최소화되어 있어 유연하게 늘어나지 못하고 긴장된 상태입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '과각화 현상이 있으며 T존 부위에 모공과 피지가 쌓여 블랙헤드 화이트헤드가 보인다.', hint: '특정 부위의 피지 정체 현상이 극심합니다.', explanation: '각질이 모공 입구를 막아 피지가 고이고(화이트헤드) 산화(블랙헤드)되는 지성 특징입니다.' },
+                { difficulty: 'HARD', answer: '지성피부', text: '메이크업이 잘지워지며 투명감이 보이지 않고 탁하다.', hint: '안색과 메이크업 지속력 모두 좋지 않은 경우입니다.', explanation: '유분 과잉으로 화장이 뭉치고, 두꺼운 각질층으로 인해 피부 속 맑은 빛이 비치지 않습니다.' },
+                { difficulty: 'HARD', answer: '건성피부', text: '각질과 소양감이 있으며 표피의 심한 건조도에 비해 늘어짐은 심하지 않다.', hint: '가려움증과 당김이 주된 증상인 건성 타입입니다.', explanation: '심각한 수분 부족으로 인해 가려움(소양감)이 발생하지만, 아직 진피 탄력은 유지되는 과도기적 상태입니다.' },
+                { difficulty: 'HARD', answer: '정상피부', text: '소릉이 얇고 피부결이 섬세하며 탄력성이 있고 모공이 작으며 모세혈관이 붉으스름하다.', hint: '건강함이 시각적으로 표현된 고난도 지문입니다.', explanation: '섬세한 결과 탄력, 그리고 건강한 순환을 의미하는 붉으스름한 혈색의 조화를 설명합니다.' }
             ];
 
             const startQuiz = (level) => {
-                const filtered = rawData.filter(q => q.difficulty === level);
-                const shuffled = [...filtered].sort(() => Math.random() - 0.5).slice(0, 10);
-                setQuestions(shuffled);
+                // 선택한 난이도 문제 우선 필터링
+                const primaryPool = rawData.filter(q => q.difficulty === level);
+                // 부족할 경우 채울 나머지 문제들
+                const secondaryPool = rawData.filter(q => q.difficulty !== level);
+                
+                // 외부 자료 없이 기존 80여개 문제 내에서 10개를 무작위 추출 (선택 난이도 우선 배치)
+                const combinedPool = [
+                    ...primaryPool.sort(() => Math.random() - 0.5),
+                    ...secondaryPool.sort(() => Math.random() - 0.5)
+                ];
+                const selectedQuestions = combinedPool.slice(0, 10);
+                
+                setQuestions(selectedQuestions);
                 setDifficulty(level);
                 setMode('quiz');
                 setCurrentQuestionIndex(0);
@@ -184,12 +287,12 @@
                                 <div className="bg-white p-8 rounded-2xl shadow-sm border border-pink-100 text-center">
                                     <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4"><Icon name="list-checks" size={32} /></div>
                                     <h2 className="text-xl font-bold mb-2">EASY 챌린지</h2>
-                                    <button onClick={() => startQuiz('EASY')} className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold transition-all">시작하기</button>
+                                    <button onClick={() => startQuiz('EASY')} className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold transition-all">시작하기 (10문제)</button>
                                 </div>
                                 <div className="bg-white p-8 rounded-2xl shadow-sm border border-pink-100 text-center">
                                     <div className="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4"><Icon name="help-circle" size={32} /></div>
                                     <h2 className="text-xl font-bold mb-2">HARD 챌린지</h2>
-                                    <button onClick={() => startQuiz('HARD')} className="w-full py-3 bg-rose-500 hover:bg-rose-600 text-white rounded-xl font-bold transition-all">시작하기</button>
+                                    <button onClick={() => startQuiz('HARD')} className="w-full py-3 bg-rose-500 hover:bg-rose-600 text-white rounded-xl font-bold transition-all">시작하기 (10문제)</button>
                                 </div>
                             </div>
                         )}
